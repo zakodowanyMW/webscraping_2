@@ -58,7 +58,7 @@ button#fetchAll {
   }
 
   tr.highlight {
-    background-color: #3498db; /* Kolor niebieski */
+    background-color: #3498db !important; /* Kolor niebieski */
     color: white; /* Kolor tekstu na kontraście */
   }
 
@@ -132,6 +132,12 @@ ul {
 
 .fetchLink:hover {
   background-color: #cc2162;
+}
+
+.lowestPrice {
+  padding: 10px 0;
+  font-size: 1.2rem;
+  color: #787878;
 }
 
   

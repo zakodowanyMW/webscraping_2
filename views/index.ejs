@@ -14,6 +14,7 @@
     <ul>
       <% links.forEach(link => { %>
         <li class="linkItem">
+          <div class="lowestPrice">Sprawdź najniższą cenę</div>
           <div class="linkInfo">
             <span class="linkDesc"><%= link.desc %></span>
             <span class="linkUrl"><%= link.link %></span>
@@ -33,6 +34,8 @@
         const response = await fetch(`/getData?url=${url}`);
         const data = await response.json();
         const tableContainer = e.target.nextElementSibling;
+        const lowestPriceDesc = document.querySelector(".lowestPrice");
+        let firstPrice = 0;
 
         const table = document.createElement('table');
         table.innerHTML = `
@@ -47,8 +50,9 @@
             </tr>
           </thead>
           <tbody>
-            ${data.map(item => `
-              <tr>
+            ${data.map((item, index) => `
+              ${index === 3 ? firstPrice = item.price : ""}
+              <tr class=${item.myShop === "yes" ? "highlight" : "" }>
                 <td>${item.companyName}</td>
                 <td>${item.description}</td>
                 <td>${item.price}</td>
@@ -60,6 +64,7 @@
           </tbody>
         `;
 
+        lowestPriceDesc.textContent = `Najniższa cena to: ${firstPrice}`;
         tableContainer.innerHTML = '';
         tableContainer.appendChild(table);
       });
@@ -106,6 +111,6 @@
     });
   </script>
 
-  <script src="/script.js"></script>
+  <!-- <script src="/script.js"></script> -->
 </body>
 </html>
