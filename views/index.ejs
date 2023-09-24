@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analiza Ceneo dla UniBit</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <h1>Analiza Ceneo.pl dla UniBit</h1>
+  <button id="fetchAll">Pobierz dane z Ceneo</button>
+  <div class="links">
+    <h2>Lista produków UniBit:</h2>
+    <ul>
+      <% links.forEach(link => { %>
+        <li class="linkItem">
+          <div class="linkInfo">
+            <span class="linkDesc"><%= link.desc %></span>
+            <span class="linkUrl"><%= link.link %></span>
+            <a href="#" class="fetchLink" data-url="<%= link.link %>">Pobierz dane</a>
+            <div class="tableContainer"></div>
+          </div>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <script>
+    document.querySelectorAll('.fetchLink').forEach(link => {
+      link.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const url = e.target.dataset.url;
+        const response = await fetch(`/getData?url=${url}`);
+        const data = await response.json();
+        const tableContainer = e.target.nextElementSibling;
+
+        const table = document.createElement('table');
+        table.innerHTML = `
+          <thead>
+            <tr>
+              <th>Nazwa Firmy</th>
+              <th class="description">Opis Produktu</th>
+              <th>Cena</th>
+              <th>Wyróżniony</th>
+              <th>Pozycja</th>
+              <th>Nasz Sklep</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${data.map(item => `
+              <tr>
+                <td>${item.companyName}</td>
+                <td>${item.description}</td>
+                <td>${item.price}</td>
+                <td>${item.noItemPromo}</td>
+                <td>${item.position}</td>
+                <td>${item.myShop}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        `;
+
+        tableContainer.innerHTML = '';
+        tableContainer.appendChild(table);
+      });
+    });
+
+    document.getElementById('fetchAll').addEventListener('click', async () => {
+      const links = document.querySelectorAll('.fetchLink');
+
+      for (const link of links) {
+        const url = link.dataset.url;
+        const response = await fetch(`/getData?url=${url}`);
+        const data = await response.json();
+        const tableContainer = link.nextElementSibling;
+
+        const table = document.createElement('table');
+        table.innerHTML = `
+          <thead>
+            <tr>
+              <th>Nazwa Firmy</th>
+              <th class="description">Opis Produktu</th>
+              <th>Cena</th>
+              <th>Wyróżniony</th>
+              <th>Pozycja</th>
+              <th>Nasz Sklep</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${data.map(item => `
+              <tr>
+                <td>${item.companyName}</td>
+                <td>${item.description}</td>
+                <td>${item.price}</td>
+                <td>${item.noItemPromo}</td>
+                <td>${item.position}</td>
+                <td>${item.myShop}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        `;
+
+        tableContainer.innerHTML = '';
+        tableContainer.appendChild(table);
+      }
+    });
+  </script>
+
+  <script src="/script.js"></script>
+</body>
+</html>

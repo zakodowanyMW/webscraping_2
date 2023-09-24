@@ -1,0 +1,137 @@
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 80%;
+  margin: 40px auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+thead th {
+  background-color: #E82A50;
+  color: #fff;
+  font-weight: normal;
+}
+
+table, th, td {
+  border: none;
+}
+
+th, td {
+  padding: 12px 16px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #ededed;
+}
+
+tbody tr:hover {
+  cursor: pointer;
+}
+
+/* Stylizacja przycisku */
+input#linkInput {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+button#fetchAll {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button#fetchAll:hover {
+    background-color: #3c9940;
+  }
+
+  tr.highlight {
+    background-color: #3498db; /* Kolor niebieski */
+    color: white; /* Kolor tekstu na kontraście */
+  }
+
+  /* Stylizacja nagłówka i przycisku */
+h1, #fetchAll {
+  font-family: 'Arial', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#fetchAll:hover {
+  background-color: #45a049;
+}
+
+/* Stylizacja listy linków */
+.links {
+  margin-top: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Dodanie cienia pod przyciskiem */
+#fetchAll {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.linkItem {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 16px;
+  /* margin-bottom: 6px; */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.linkDesc {
+  font-size: 1.1rem;
+}
+
+.linkUrl {
+  font-size: 1rem;
+  color: #787878;
+}
+
+.fetchLink {
+  background-color: crimson;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 20px;
+  margin-right: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.fetchLink:hover {
+  background-color: #cc2162;
+}
+
+  
